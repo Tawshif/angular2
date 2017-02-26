@@ -1,39 +1,49 @@
 <h1>Hello, {{name}}</h1>
 <p><strong>Email:</strong>{{email}}</p>
 <address>
-    <strong>Address:</strong> {{address.street}} {{address.city}} {{address.state}}
+  <strong>Address:</strong> {{address.street}} {{address.city}} {{address.state}}
 </address>
 <br/>
 <button (click)="toggleHobbies()">
-    {{showHobbies ? "Hide Hobbies":"Show Hobbies"}}
+  {{showHobbies ? "Hide Hobbies":"Show Hobbies"}}
 </button>
 <div *ngIf="showHobbies">
-    <h3>Hobbies</h3>
-    <ul>
-        <li *ngFor="let hobby of hobbies">{{hobby}}</li>
-    </ul>
+  <h3>Hobbies</h3>
+  <ul>
+    <li *ngFor="let hobby of hobbies; let i = index ">{{hobby}}
+      <button (click)="deleteHobby(i)">X</button>
+    </li>
+  </ul>
+  <form (submit)="addHobby(hobby.value)">
+    <label for="hobby">Add Hobby:</label>
+    <input type="text" id="hobby" name="hobby" #hobby />
+  </form>
 </div>
 <form>
-    <fieldset>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="Name" [(ngModel)]="name">
-				<br>
-				<br>
-        <label for="email">Email:</label>
-        <input type="text" name="email" [(ngModel)]="name">
-				<br>
-				<br>
-        <label for="Street">Street:</label>
-        <input type="text" id="Street" name="address.street" [(ngModel)]="address.street">
-				<br>
-				<br>
-        <label for="City">City:</label>
-        <input type="text" id="City" name="address.city" [(ngModel)]="address.city">
-				<br>
-				<br>
-        <label for="state">State:</label>
-        <input type="text" id="state" name="address.state" [(ngModel)]="address.state">
-    </fieldset>
+  <fieldset>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="Name" [(ngModel)]="name">
+    <br>
+    <br>
+    <label for="email">Email:</label>
+    <input type="text" name="email" [(ngModel)]="name">
+    <br>
+    <br>
+    <label for="Street">Street:</label>
+    <input type="text" id="Street" name="address.street" [(ngModel)]="address.street">
+    <br>
+    <br>
+    <label for="City">City:</label>
+    <input type="text" id="City" name="address.city" [(ngModel)]="address.city">
+    <br>
+    <br>
+    <label for="state">State:</label>
+    <input type="text" id="state" name="address.state" [(ngModel)]="address.state">
+  </fieldset>
 </form>
-
-<!-- 35 minute -->
+<hr>
+<h3>Posts</h3>
+<div *ngFor="let post of posts">
+  <h3>{{post.title}}</h3>
+  <p>{{post.body}}</p>
+</div>
