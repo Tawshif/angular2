@@ -1,14 +1,15 @@
-import { AngularCliPage } from './app.po';
+import { browser, element, by } from 'protractor';
 
-describe('angular-cli App', function() {
-  let page: AngularCliPage;
+describe('QuickStart E2E Tests', function () {
 
-  beforeEach(() => {
-    page = new AngularCliPage();
+  let expectedMsg = 'Hello Angular';
+
+  beforeEach(function () {
+    browser.get('');
   });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+  it('should display: ' + expectedMsg, function () {
+    expect(element(by.css('h1')).getText()).toEqual(expectedMsg);
   });
+
 });
